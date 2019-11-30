@@ -4,17 +4,15 @@ import br.com.codenation.aplicacao.domain.dao.CompanyDao;
 import br.com.codenation.aplicacao.domain.dao.UserDao;
 import br.com.codenation.aplicacao.domain.entity.Company;
 import br.com.codenation.aplicacao.domain.entity.User;
-import br.com.codenation.aplicacao.domain.vo.AddressVO;
-import br.com.codenation.aplicacao.domain.vo.CompanyVO;
 import br.com.codenation.aplicacao.domain.vo.UserVO;
 import br.com.codenation.aplicacao.service.UserService;
-import com.sun.media.sound.ModelMappedInstrument;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -57,6 +55,11 @@ public class UserServiceImpl implements UserService {
         UserVO userVO = modelMapper.map(user, UserVO.class);
 
         return userVO;
+    }
+
+    @Override
+    public List<User> findUsersByCompanyId(Long companyId) {
+        return userDao.findByCompanyId(companyId);
     }
 
     @Override

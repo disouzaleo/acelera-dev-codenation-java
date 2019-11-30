@@ -2,6 +2,7 @@ package br.com.codenation.aplicacao.domain.dao;
 
 import br.com.codenation.aplicacao.domain.entity.Company;
 import br.com.codenation.aplicacao.domain.entity.User;
+import br.com.codenation.aplicacao.domain.vo.UserVO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -19,8 +20,10 @@ public interface UserDao extends JpaRepository<User, Long> {
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE user u set u.company_id = :idCompany WHERE u.id = :id" , nativeQuery = true)
+    @Query(value = "UPDATE users u set u.company_id = :idCompany WHERE u.id = :id" , nativeQuery = true)
     void updateCompanyByUserId(@Param("id") Long id, @Param("idCompany") Long idCompany);
 
     User findByName(@Param("name") String name);
+
+    List<User> findByCompanyId(Long companyId);
 }

@@ -5,6 +5,7 @@ import br.com.codenation.aplicacao.domain.entity.User;
 import br.com.codenation.aplicacao.domain.vo.UserVO;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public interface UserService {
 
@@ -15,6 +16,8 @@ public interface UserService {
     void deleteUser(Long id);
 
     UserVO updateNameUserById(Long id, String name);
+
+    List<User> findUsersByCompanyId(Long companyId);
 
     void updateCompanyByUserId(Long userId, Long companyId);
 
