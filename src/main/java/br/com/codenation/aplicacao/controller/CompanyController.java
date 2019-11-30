@@ -1,5 +1,6 @@
 package br.com.codenation.aplicacao.controller;
 
+import br.com.codenation.aplicacao.domain.vo.CompanySalaryMeanVO;
 import br.com.codenation.aplicacao.domain.vo.CompanyVO;
 import br.com.codenation.aplicacao.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,12 +28,13 @@ public class CompanyController {
         return companyService.findAllByName(name);
     }
 
+    @GetMapping("/salaryMean")
+    public List<CompanySalaryMeanVO> findCompaniesSalaryMeans() { return companyService.findAllCompaniesSalaryMeans(); }
+
     @DeleteMapping
     public void deleteCompany(@Param("id") Long id){
         companyService.deleteById(id);
     }
-
-
 
 ////    @GetMapping("/")
 //    @RequestMapping(value = "/teste", method = RequestMethod.GET)
